@@ -1,28 +1,31 @@
 package view.command
 
 import com.charleskorn.kaml.Yaml
-import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.parameters.options.option
+import com.github.ajalt.clikt.parameters.options.required
+import com.github.ajalt.clikt.parameters.types.file
+import domain.model.Repository
+import domain.model.Token
+import presentation.converter.ConfigConverter
 import presentation.model.Config
 import presentation.runner.UpdateCommandRunner
 
-class UpdateCommand : CliktCommand() {
+class UpdateCommand : GitHubCommand(help = "update") {
+    val config by option().file(mustExist = true).required()
+
     override fun run() {
+        val repository = repo.split("/").let {
+            Repository(ownerName = it[0], name = it[1])
+        }
 
-        // TODO: read from yaml file
-        val input = """labels:
-  - name: bug
-    color: fc2929
-    description: this is bug
-  - name: help wanted
-    color: 000000
-  - name: fix
-    color: cccccc
-  - name: notes
-    color: fbca04""".trimIndent()
+        val token = Token(token = token)
 
-        val result = Yaml.default.parse(Config.serializer(), input)
+        val config = Yaml.default.parse(Config.serializer(), config.readText()).let {
+            ConfigConverter.convert(it)
+        }
 
-        echo(UpdateCommandRunner(result).run())
+        val runner = UpdateCommandRunner(token, repository, config)
+
+        echo(runner.run())
     }
-
 }

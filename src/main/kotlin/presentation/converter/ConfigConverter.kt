@@ -6,7 +6,7 @@ import domain.model.Label as DomainLabel
 import presentation.model.Config as PresentationConfig
 import presentation.model.Label as PresentationLabel
 
-class ConfigConverter {
+object ConfigConverter {
     fun convert(presentationConfig: PresentationConfig): DomainConfig {
         val labels = presentationConfig.labels.asSequence().map {
             convertLabels(it)

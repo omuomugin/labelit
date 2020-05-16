@@ -9,7 +9,7 @@ import infra.query.GitHubLabelQueryServiceImpl
 class ShowCommandRunner(private val token: Token, private val repository: Repository) : CommandRunner {
     override fun run(): String {
         val fetchLabelUseCase = FetchLabelUseCase(service = GitHubLabelQueryServiceImpl())
-        val labels = fetchLabelUseCase.getLabels(repository, token)
+        val labels = fetchLabelUseCase.fetchLabels(repository, token)
 
         return formatToPrettyString(labels)
     }
