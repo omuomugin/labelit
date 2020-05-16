@@ -1,22 +1,27 @@
 package presentation.runner
 
 import domain.model.Label
-import domain.usecase.ShowLabelUseCase
+import domain.model.Repository
+import domain.model.Token
+import domain.usecase.FetchLabelUseCase
+import infra.query.GitHubLabelQueryServiceImpl
 
-class ShowCommandRunner : CommandRunner {
+class ShowCommandRunner(private val token: Token, private val repository: Repository) : CommandRunner {
     override fun run(): String {
-        val labels = ShowLabelUseCase().getLabels()
+        val fetchLabelUseCase = FetchLabelUseCase(service = GitHubLabelQueryServiceImpl())
+        val labels = fetchLabelUseCase.getLabels(repository, token)
 
-        var resultStr = ""
-        labels.forEach {
-            resultStr += "${labelToString(it)}\n"
-        }
-        return resultStr
+        return formatToPrettyString(labels)
     }
 
-    private fun labelToString(label: Label): String {
-        return """
-            ${label.name} : #${label.color} (description: ${label.description})
-        """.trimIndent()
+    private fun formatToPrettyString(labels: List<Label>): String {
+        var prettyStr = ""
+        labels.forEach { label ->
+            prettyStr += """
+            ${label.name} (${label.description}) : #${label.color}
+        """.trimIndent() + "\n"
+        }
+
+        return prettyStr
     }
 }

@@ -1,6 +1,6 @@
 package domain.model
 
 data class Repository(
-    val owner: String,
-    val repository: String
+    val ownerName: String,
+    val name: String
 )

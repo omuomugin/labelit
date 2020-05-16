@@ -1,9 +1,8 @@
 package infra.model
 
-data class Labels(
-    val labels: List<Label>
-)
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Label(
     val name: String,
     val color: String,
