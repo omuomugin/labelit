@@ -1,11 +1,13 @@
 labels:
-  - name: sample1
+  - name: bug
     color: 565455
-  - name: help wanted2
+  - name: fix
     color: 000000
-  - name: fix3
+  - name: feature
     color: cccccc
-  - name: notes4
+  - name: help wanted
     color: aaca04
-  - name: notenote
+  - name: good one
+    color: 666666
+  - name: refactor
     color: 666666
