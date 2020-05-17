@@ -5,7 +5,7 @@ import domain.model.Token
 import presentation.runner.ShowCommandRunner
 import view.output.OutPutBoundary
 
-class ShowCommand : GitHubCommand(help = "Show Commands"), OutPutBoundary {
+class ShowCommand : GitHubCommand(help = "show current set labels with target repo"), OutPutBoundary {
     override fun run() {
         val repoData = repo.split("/")
 

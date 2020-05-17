@@ -11,7 +11,8 @@ import presentation.model.Config
 import presentation.runner.UpdateCommandRunner
 import view.output.OutPutBoundary
 
-class UpdateCommand : GitHubCommand(help = "update"), OutPutBoundary {
+class UpdateCommand : GitHubCommand(help = "update all the labels in the target repo with deleting current ones"),
+    OutPutBoundary {
     val config by option().file(mustExist = true).required()
 
     override fun run() {
