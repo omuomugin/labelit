@@ -18,6 +18,8 @@ Commands:
 ```
 
 # Quick Start
+not yet distibuted with homebrew or other kind of package manager but will be doing soon.
+
 
 You need a config file written in yaml. (other type will be supported in near future maybe).
 
