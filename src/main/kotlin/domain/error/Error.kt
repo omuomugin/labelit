@@ -1,7 +1,7 @@
 package domain.error
 
 sealed class Error {
-    class GitHubLabelFetchFailed : Error()
-    class GitHubLabelAddFailed : Error()
-    class GitHubLabelDeleteFailed : Error()
+    object GitHubLabelFetchFailed : Error()
+    object GitHubLabelAddFailed : Error()
+    object GitHubLabelDeleteFailed : Error()
 }

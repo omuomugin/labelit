@@ -1,6 +1,7 @@
 package presentation.runner
 
 import domain.error.Error
+import domain.event.Event
 import domain.model.Config
 import domain.model.Repository
 import domain.model.Token
@@ -9,6 +10,7 @@ import infra.command.GitHubLabelAddCommandServiceImpl
 import infra.command.GitHubLabelDeleteCommandServiceImpl
 import infra.query.GitHubLabelQueryServiceImpl
 import presentation.converter.ErrorConverter
+import presentation.converter.EventConverter
 import view.command.OutPutBoundary
 
 class UpdateCommandRunner(
@@ -16,12 +18,13 @@ class UpdateCommandRunner(
     private val token: Token,
     private val repository: Repository,
     private val config: Config
-) : CommandRunner, ErrorHandler {
+) : CommandRunner, ErrorHandler, EventHandler {
 
     private val errorList: MutableList<Error> = mutableListOf()
 
     override fun run(): String {
         val updateLabelUseCase = UpdateLabelUseCase(
+            eventHandler = this,
             errorHandler = this,
             addService = GitHubLabelAddCommandServiceImpl(),
             deleteService = GitHubLabelDeleteCommandServiceImpl(),
@@ -34,11 +37,15 @@ class UpdateCommandRunner(
             return "Error Occurred : failed in some place"
         }
 
-        return "Success : see GitHub labels so that your labels are updated"
+        return "\nSuccess : see GitHub labels so that your labels are updated\n"
     }
 
     override fun onError(error: Error) {
         errorList.add(error)
         outPutBoundary.outPutMessage(ErrorConverter.convertErrorToString(error))
+    }
+
+    override fun onEvent(event: Event) {
+        outPutBoundary.outPutMessage(EventConverter.convertEventToString(event))
     }
 }

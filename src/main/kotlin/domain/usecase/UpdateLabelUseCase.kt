@@ -1,6 +1,7 @@
 package domain.usecase
 
 import domain.error.Error
+import domain.event.Event
 import domain.model.Label
 import domain.model.Repository
 import domain.model.Token
@@ -8,8 +9,10 @@ import infra.command.GitHubLabelAddCommandService
 import infra.command.GitHubLabelDeleteCommandService
 import infra.query.GitHubLabelQueryService
 import presentation.runner.ErrorHandler
+import presentation.runner.EventHandler
 
 class UpdateLabelUseCase(
+    private val eventHandler: EventHandler,
     private val errorHandler: ErrorHandler,
     private val addService: GitHubLabelAddCommandService,
     private val deleteService: GitHubLabelDeleteCommandService,
@@ -23,8 +26,9 @@ class UpdateLabelUseCase(
                 repoName = repository.name,
                 token = token.token
             )
+            eventHandler.onEvent(Event.GitHubLabelFetchSucceed)
         } catch (e: Exception) {
-            errorHandler.onError(Error.GitHubLabelFetchFailed())
+            errorHandler.onError(Error.GitHubLabelFetchFailed)
             return
         }
 
@@ -35,8 +39,9 @@ class UpdateLabelUseCase(
                 token = token.token,
                 labels = currentLabels
             )
+            eventHandler.onEvent(Event.GitHubLabelDeleteSucceed)
         } catch (e: Exception) {
-            errorHandler.onError(Error.GitHubLabelDeleteFailed())
+            errorHandler.onError(Error.GitHubLabelDeleteFailed)
             return
         }
 
@@ -47,8 +52,9 @@ class UpdateLabelUseCase(
                 token = token.token,
                 labels = labels
             )
+            eventHandler.onEvent(Event.GitHubLabelAddSucceed)
         } catch (e: Exception) {
-            errorHandler.onError(Error.GitHubLabelAddFailed())
+            errorHandler.onError(Error.GitHubLabelAddFailed)
             return
         }
     }
