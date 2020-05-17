@@ -10,7 +10,7 @@ import presentation.converter.ConfigConverter
 import presentation.model.Config
 import presentation.runner.UpdateCommandRunner
 
-class UpdateCommand : GitHubCommand(help = "update") {
+class UpdateCommand : GitHubCommand(help = "update"), OutPutBoundary {
     val config by option().file(mustExist = true).required()
 
     override fun run() {
@@ -24,8 +24,12 @@ class UpdateCommand : GitHubCommand(help = "update") {
             ConfigConverter.convert(it)
         }
 
-        val runner = UpdateCommandRunner(token, repository, config)
+        val runner = UpdateCommandRunner(this, token, repository, config)
 
         echo(runner.run())
+    }
+
+    override fun outPutMessage(message: String) {
+        echo(message)
     }
 }
