@@ -3,6 +3,7 @@ package view.command
 import domain.model.Repository
 import domain.model.Token
 import presentation.runner.ShowCommandRunner
+import view.output.OutPutBoundary
 
 class ShowCommand : GitHubCommand(help = "Show Commands"), OutPutBoundary {
     override fun run() {

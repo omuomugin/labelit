@@ -6,8 +6,8 @@ import domain.model.Label
 import domain.model.Repository
 import domain.model.Token
 import infra.query.GitHubLabelQueryService
-import presentation.runner.ErrorHandler
-import presentation.runner.EventHandler
+import presentation.handler.ErrorHandler
+import presentation.handler.EventHandler
 
 class FetchLabelUseCase(
     private val eventHandler: EventHandler,

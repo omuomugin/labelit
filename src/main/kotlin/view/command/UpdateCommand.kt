@@ -9,6 +9,7 @@ import domain.model.Token
 import presentation.converter.ConfigConverter
 import presentation.model.Config
 import presentation.runner.UpdateCommandRunner
+import view.output.OutPutBoundary
 
 class UpdateCommand : GitHubCommand(help = "update"), OutPutBoundary {
     val config by option().file(mustExist = true).required()

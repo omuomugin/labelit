@@ -8,8 +8,8 @@ import domain.model.Token
 import infra.command.GitHubLabelAddCommandService
 import infra.command.GitHubLabelDeleteCommandService
 import infra.query.GitHubLabelQueryService
-import presentation.runner.ErrorHandler
-import presentation.runner.EventHandler
+import presentation.handler.ErrorHandler
+import presentation.handler.EventHandler
 
 class UpdateLabelUseCase(
     private val eventHandler: EventHandler,

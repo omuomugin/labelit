@@ -8,7 +8,11 @@ import infra.converter.LabelConverter
 import kotlinx.coroutines.runBlocking
 
 class GitHubLabelQueryServiceImpl : GitHubLabelQueryService {
-    override fun fetchLabels(owner: String, repoName: String, token: String): List<Label> {
+    override fun fetchLabels(
+        owner: String,
+        repoName: String,
+        token: String
+    ): List<Label> {
         val result = runBlocking {
             val (_, _, result) = Fuel.get("https://api.github.com/repos/${owner}/${repoName}/labels")
                 .authentication()

@@ -11,7 +11,12 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 
 class GitHubLabelDeleteCommandServiceImpl : GitHubLabelDeleteCommandService {
-    override fun deleteLabels(owner: String, repoName: String, token: String, labels: List<Label>) {
+    override fun deleteLabels(
+        owner: String,
+        repoName: String,
+        token: String,
+        labels: List<Label>
+    ) {
         runBlocking {
             val deferreds: List<Deferred<Unit>> = LabelConverter.convertToInfraModel(labels)
                 .map { label ->

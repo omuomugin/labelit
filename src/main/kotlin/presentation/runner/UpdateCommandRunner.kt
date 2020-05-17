@@ -11,7 +11,9 @@ import infra.command.GitHubLabelDeleteCommandServiceImpl
 import infra.query.GitHubLabelQueryServiceImpl
 import presentation.converter.ErrorConverter
 import presentation.converter.EventConverter
-import view.command.OutPutBoundary
+import presentation.handler.ErrorHandler
+import presentation.handler.EventHandler
+import view.output.OutPutBoundary
 
 class UpdateCommandRunner(
     private val outPutBoundary: OutPutBoundary,

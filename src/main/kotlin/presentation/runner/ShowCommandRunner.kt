@@ -9,7 +9,9 @@ import domain.usecase.FetchLabelUseCase
 import infra.query.GitHubLabelQueryServiceImpl
 import presentation.converter.ErrorConverter
 import presentation.converter.EventConverter
-import view.command.OutPutBoundary
+import presentation.handler.ErrorHandler
+import presentation.handler.EventHandler
+import view.output.OutPutBoundary
 
 class ShowCommandRunner(
     private val outPutBoundary: OutPutBoundary,
