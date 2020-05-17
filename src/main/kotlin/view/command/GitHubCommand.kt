@@ -18,7 +18,7 @@ abstract class GitHubCommand(help: String) : CliktCommand(help = help) {
     val repo: String by option(
         help = "onwner/repo string to set target repository"
     ).required().validate {
-        if (it.split("/").size == 2) {
+        if (it.split("/").size != 2) {
             echo("repo should be 'owner/repo'")
         }
     }
