@@ -10,16 +10,12 @@ abstract class GitHubCommand(help: String) : CliktCommand(help = help) {
         help = "github token. you can set env as GIT_TOKEN too",
         envvar = "GIT_TOKEN"
     ).required().validate {
-        if (it.isEmpty()) {
-            echo("env 'GIT_TOKEN' should be set")
-        }
+        require(it.isNotEmpty()) { "env 'GIT_TOKEN' should be set" }
     }
 
     val repo: String by option(
         help = "onwner/repo string to set target repository"
     ).required().validate {
-        if (it.split("/").size != 2) {
-            echo("repo should be 'owner/repo'")
-        }
+        require(it.split("/").size == 2) { "repo should be 'owner/repo'" }
     }
 }
