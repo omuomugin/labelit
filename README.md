@@ -1,4 +1,4 @@
-# GitHub labels as Code
+# GitHub labels as a Code
 
 `labelit` is a tool to manage GitHub label as code.
 
