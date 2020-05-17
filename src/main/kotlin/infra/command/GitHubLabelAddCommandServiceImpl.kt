@@ -6,8 +6,6 @@ import com.github.kittinunf.fuel.core.extensions.jsonBody
 import com.github.kittinunf.fuel.coroutines.awaitStringResponseResult
 import domain.model.Label
 import infra.converter.LabelConverter
-import infra.model.fromJson
-import infra.model.toJson
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
@@ -26,7 +24,7 @@ class GitHubLabelAddCommandServiceImpl : GitHubLabelAddCommandService {
                         val (_, _, result) = Fuel.post("https://api.github.com/repos/${owner}/${repoName}/labels")
                             .authentication()
                             .bearer(token)
-                            .jsonBody(toJson(label))
+                            .jsonBody(LabelConverter.convertToJson(label))
                             .awaitStringResponseResult()
 
                         result.fold(

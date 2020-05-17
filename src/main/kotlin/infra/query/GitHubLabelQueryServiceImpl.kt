@@ -5,7 +5,6 @@ import com.github.kittinunf.fuel.core.extensions.authentication
 import com.github.kittinunf.fuel.coroutines.awaitStringResponseResult
 import domain.model.Label
 import infra.converter.LabelConverter
-import infra.model.fromJson
 import kotlinx.coroutines.runBlocking
 
 class GitHubLabelQueryServiceImpl : GitHubLabelQueryService {
@@ -20,7 +19,8 @@ class GitHubLabelQueryServiceImpl : GitHubLabelQueryService {
         }
 
         return result.fold({ data ->
-            LabelConverter.convertToDomainModel(fromJson(data))
+            val labels = LabelConverter.convertFromJson(data)
+            LabelConverter.convertToDomainModel(labels)
         }, { error -> throw Exception("${error.message}") })
     }
 }
