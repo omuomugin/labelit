@@ -8,6 +8,7 @@ object ErrorConverter {
             is Error.GitHubLabelFetchFailed -> "[Error]: Label Fetch Failed from GitHub"
             is Error.GitHubLabelAddFailed -> "[Error]: Label Add Failed from GitHub"
             is Error.GitHubLabelDeleteFailed -> "[Error]: Label Delete Failed from GitHub"
+            is Error.GitHubLabelUpdateFailed -> "[Error]: Label Update Failed from GitHub"
         }
     }
 }

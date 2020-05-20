@@ -8,6 +8,7 @@ import domain.model.Token
 import domain.usecase.UpdateLabelUseCase
 import infra.command.GitHubLabelAddCommandServiceImpl
 import infra.command.GitHubLabelDeleteCommandServiceImpl
+import infra.command.GitHubLabelUpdateCommandServiceImpl
 import infra.query.GitHubLabelQueryServiceImpl
 import presentation.converter.ErrorConverter
 import presentation.converter.EventConverter
@@ -30,7 +31,8 @@ class UpdateCommandRunner(
             errorHandler = this,
             addService = GitHubLabelAddCommandServiceImpl(),
             deleteService = GitHubLabelDeleteCommandServiceImpl(),
-            queryService = GitHubLabelQueryServiceImpl()
+            queryService = GitHubLabelQueryServiceImpl(),
+            updateService = GitHubLabelUpdateCommandServiceImpl()
         )
 
         updateLabelUseCase.updateLabels(repository, token, config.labels)

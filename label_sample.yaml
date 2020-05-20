@@ -9,5 +9,5 @@ labels:
     color: aaca04
   - name: good one
     color: 666666
-  - name: refactor
-    color: 666666
+  - name: Just started
+    color: 444444
