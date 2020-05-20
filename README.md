@@ -1,4 +1,4 @@
-# GitHub labes as Code
+# GitHub labels as a Code
 
 `labelit` is a tool to manage GitHub label as code.
 
@@ -18,8 +18,8 @@ Commands:
 ```
 
 # Quick Start
+not yet distibuted with homebrew or other kind of package manager but will be doing soon.
 
-## config file
 
 You need a config file written in yaml. (other type will be supported in near future maybe).
 
