@@ -14,7 +14,8 @@ Options:
 
 Commands:
   show    show current set labels with target repo
-  update  update all the labels in the target repo with deleting current ones
+  update  Update if name already exists, Add if not and Delete if not given in
+          yaml but already set
 ```
 
 # Quick Start
@@ -26,7 +27,7 @@ You need a config file written in yaml. (other type will be supported in near fu
 name and color are required and description is optional.  
 description will be empty when not given.
 
-```yaml
+```yml
 labels:
     - name: bug
       color: fc2929
