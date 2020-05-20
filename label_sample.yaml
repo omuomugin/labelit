@@ -1,13 +1,14 @@
 labels:
-  - name: bug
-    color: 565455
-  - name: fix
-    color: 000000
-  - name: feature
-    color: cccccc
-  - name: help wanted
-    color: aaca04
-  - name: good one
-    color: 666666
-  - name: Just started
-    color: 444444
+  - name: "Just started"
+    color: "444444"
+    description: "Just stared label"
+  - name: "bug"
+    color: "565455"
+  - name: "feature"
+    color: "cccccc"
+  - name: "fix"
+    color: "000000"
+  - name: "good one"
+    color: "666666"
+  - name: "help wanted"
+    color: "aaca04"

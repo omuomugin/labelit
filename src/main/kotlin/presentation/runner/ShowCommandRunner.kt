@@ -37,14 +37,18 @@ class ShowCommandRunner(
     }
 
     private fun formatToPrettyString(labels: List<Label>): String {
-        var prettyStr = "\n"
+        var prettyStr = "=================================\n"
+        prettyStr += "labels:"
         labels.forEach { label ->
             prettyStr += """
-            ${label.name} (${label.description}) : #${label.color}
-        """.trimIndent() + "\n"
+    - name: "${label.name}"
+      color: "${label.color}""""
+            if (label.description.isNotEmpty()) {
+                prettyStr += """
+      description: "${label.description}""""
+            }
         }
-
-        prettyStr += "\nlabels fetched count = ${labels.count()}\n"
+        prettyStr += "\n================================="
 
         return prettyStr
     }
